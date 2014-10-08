@@ -1,0 +1,63 @@
+//Jade支持模板实例（通过block，extends）
+//jadeblock可以提供默认内容，虽然可选
+//layout.jade
+html
+  head
+    title My Site - #{title}
+    block scripts
+      script(src='/jquery.js')
+  block
+    block content
+    block foot
+      #footer
+        p some footer content
+//要extend layout，创建一个新文件，使用extends，给出path
+//page-a.jade
+extends ./layout.jade
+block scripts
+  script(src='/jquery.js')
+  script(src='/pets.js')
+block content
+  h1= title
+  each pet in pets
+    include pet
+
+//重载block提供另外的block也是可以的，下面的例子中，content提供了一个sidebar和primary块用来重写，第三个模板可以重写content
+//sub-layout.jade
+extends ./layout.jade
+block content
+  .sidebar
+    blcok sidebar
+      p nothing
+  .primary
+    block primary
+      p nothing
+
+extends ./sub-layout.jade
+block content
+  .sidebar
+    block sidebar
+      p nothing
+  .primary
+    block primary
+      p nothing
+
+//区块的添加和预添加
+//Jade允许你replace，prepend，append块，假设你有默认的脚本在head块中，你希望使用在每个page中
+html
+  head
+    block head
+      script(src='/vendor/jquery.js')
+      script(src='/vendor/caustic.js')
+  body
+    block content
+//现在假设你有一个单页应用（JS游戏），你想要一些游戏相关脚本，你可以append这些block
+extends layout
+block append head
+  script(src='/vendor/three.js')
+  script(src='/game.js')
+//当使用block append或block prepend时，block是可选的
+extends layout
+append head
+  script(src='/vendor/three.js')
+  script(src='/game.js')

@@ -1,0 +1,14 @@
+//Jade提供了三中方法获取普通文本。
+//Piped Text
+//最简单地方法是添加plain text到模板中，以|开头
+| Plain text can include <strong>html</strong>
+p 
+  | It must always be on its own line
+//内嵌于Tag
+p Plain text can include <strong>html</strong>
+//Tag中添加block
+script.
+  if （usingJade)
+    console.log('you are awesome')
+  else
+  	console.log('use jade')

@@ -1,0 +1,10 @@
+//Filters允许你使用其他语言（在Jade模板中）
+:markdown
+  # markdown
+
+  I often like including markdown documents.
+script
+  :coffee
+    console.log 'This is coffee script'
+//Filters是编译时的，这使得他们快速但是也以为这他们不支持动态内容
+//filter在浏览器中是不支持的，但在服务器中是支持的

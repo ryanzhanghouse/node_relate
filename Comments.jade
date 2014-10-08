@@ -1,0 +1,22 @@
+//注释
+//单行注释看起来像JS注释，并只能放在自己那一行
+// just some paragraphs
+p foo
+p bar
+//Jade还支持非缓冲注释
+//- will not output within markup
+p foo
+p bar
+//块注释
+body
+  //
+    As much text as you want
+    can go here.
+//条件注释
+//Jade没有特别的形式（对于条件注释）
+<!--[if IE 8]>
+<html lang="en" class="lt-ie9">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en">
+<!--<![endif]-->

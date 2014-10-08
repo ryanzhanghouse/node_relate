@@ -1,0 +1,48 @@
+//Mixin允许你创建可重用的block
+//- Declaration
+mixin list
+  ul
+    li foo
+    li bar
+    li baz
+//- Use
++list
++list
+//Mixin会被编译成函数，可以添加参数
+mixin pet(name)
+  li.pet= name
+ul
+  +pet('cat')
+  +pet('dog')
+  +pet('pig')
+//Mixin块
+//Mixin也可以用block作内容
+mixin article(title)
+  .article
+    .article-wrapper
+      h1= title
+      if block
+        block
+      else
+        p No content provided
++article('Hello world')
++article('Hello world')
+  p This is my
+  p Amazing article
+//Mixin特性
+//Mixin也获取一个隐式特性参数（从mixin中传入）
+mixin link(href, name)
+  //- attributes == {class: "btn"}
+  a(class!=attributes.class, href=href)= name
++link('/foo', 'foo')(class="btn")
+//你也可以使用&attributes
+mixin link(href, name)
+  a(href=href)&attributes(attributes)= name
++link('/foo', 'foo')(class="btn")
+//Rest Arguments
+//你也可以写mixin（好几个参数）使用rest Arguments语法
+mixin list(id, ...items)
+  ul(id=id)
+    each item in items
+      li= item
++list('my-list', 1, 2, 3, 4)

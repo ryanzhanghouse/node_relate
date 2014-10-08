@@ -1,0 +1,18 @@
+//Jade的第一类条件语法允许可选的括号，而且你也可以省略-，否则他是相同的，只是普通JS
+- var user = { description: 'foo bar baz' }
+- var authorised = false
+#user
+  if user.description
+    h2 Description
+    p.description= user.description
+  else if authorised
+    h2 Description
+    p.description.
+      User has no description,
+      why not add one...
+  else
+    h1 Description
+    p.description User has no description
+//Jade也提供了unless
+unless user.isAnonymous
+  p You're logged in as #{user.name}

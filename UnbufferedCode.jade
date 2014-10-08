@@ -1,0 +1,24 @@
+//无缓冲代码以-开始，不直接添加到输出
+- for (var x = 0; x < 3; x++)
+  li item
+//缓冲代码以=开始，将模板中JS表达式的求值结果输出，为了安全，他是first HTML转义的
+p
+  = 'This code is <escaped>!'
+//它也可以写到行内（使用attributes）支持全范围的JS表达式
+p= 'This code is' + ' <escaped>!'
+//非转义缓冲代码
+//非转义缓冲代码以!=开始，输出JS表达式求值的结果，这不进行转义，所以对于用户输入是不安全的
+p
+  != 'This code is <strong>not</strong> escaped!'
+//它也可以写到行内（使用attributes），支持全范围JS表达式
+p!= 'This code is <strong>not</strong> escaped!'
+//非转义代码是危险的，你需要净化用户输入
+//Interpolation
+//plain-text和piped-text都支持interpolation
+- var user = {name: 'Forbes Lindesay'}
+p Welcome #{user.name}
+//非转义插值
+//你也可以使用非转义插值来输出HTML
+- var user = {name: '<strong>Forbes Lindesay</strong>'}
+p Welcome #{user.name}
+p Welcome !{user.name}

@@ -1,0 +1,23 @@
+//Jade支持两个主要的iteration的方法，each，while
+//each是Jade的第一类iteration，使得对数组或对象的iteration变得容易
+ul
+  each val in [1, 2, 3, 4, 5]
+  li= val
+//你也可以在在iterate中得到index
+ul
+  each val, index in ['zero', 'one', 'two']
+    li= index + ': ' + val
+//Jade也提供了让你对对象中key进行iterate的方法
+ul
+  each val, index in {1:'one',2:'two',3:'three'}
+    li= index + ': ' + val
+//对象和数组的进行iterate的另一个例子
+- var values = [];
+ul
+  each val in values.length ? values : ['Three are no values']
+    li= val
+//你也可以使用while
+- var n = 0
+ul
+  while n < 4
+    li= n++
